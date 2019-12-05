@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  
+  <body>
+    <h2>Pixel Sort</h2>
+    <div class="options" id="options" style="padding-top: 50px;">
+      <div class="row">
+          <div class="label">
+            Upload Image
+          </div>
+          
+          <div class="input" id="inputContainer">
+            <!-- <input type="file" onChange="handleFileInput()" id="myFileInput"> -->
+          </div>
+        </div>
+      <div class="row">
+        <div class="label">
+          Sort Method
+        </div>
+        
+        <div class="input">
+            <select name="sortMethod" id="sortMethod" onchange="setVariable('SORT_METHOD', 'BRIGHTNESS')">
+            <option value="BRIGHTNESS" >Brightness</option>
+            <option value="SATURATION">Saturation</option>
+            <option value="HUE">Hue</option>
+            <option value="LIGHTNESS">Lightness</option>
+            <option value="RED">Red</option>
+            <option value="GREEN">Green</option>
+            <option value="BLUE">Blue</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          Sort Direction
+        </div>
+        <div class="input">
+            
+          <select name="sortDirection" id="sortDirection" onchange="setVariable('SORT_DIRECTION', 0)">
+              <option value="ASC">Ascending</option>
+              <option value="DESC">Descending</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          Threshold Method
+        </div>
+        <div class="input">
+          <select name="thresholdMethod" id="thresholdMethod" onchange="setVariable('THRESHOLD_METHOD', 'BRIGHTNESS')">
+            <option value="BRIGHTNESS">Brightness</option>
+            <option value="SATURATION">Saturation</option>
+            <option value="HUE">Hue</option>
+            <option value="LIGHTNESS">Lightness</option>
+            <option value="RED">Red</option>
+            <option value="GREEN">Green</option>
+            <option value="BLUE">Blue</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          Theshold Greater/Less Than
+        </div>
+        <div class="input">
+          <select name="thresholdGTLT" id="thresholdGTLT" onchange="setVariable('THRESHOLD_GTLT', 'GREATER')">
+              <option value="LESS" >Less Than</option>
+              <option value="GREATER" >Greater Than</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          thresholdValue
+        </div>
+        <div class="input">
+          <input id="thresholdValue" type="number" min="0" max="255" onkeyup="setVariable('THRESHOLD_VALUE', value)" onclick="setVariable('THRESHOLD_VALUE', value)">
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">
+          Rotation
+        </div>
+        <div class="input">
+          <select name="rotation" id="rotation" onchange="setVariable('ROTATION', 0)">
+              <option value="0" >0</option>
+              <option value="90" >90</option>
+              <option value="180" >180</option>
+              <option value="270" >270</option>
+            </select>
+        </div>
+      </div>
+      
+      <!-- <div>
+        TODO: doExport
+      </div> -->
+      <div class="row buttons">
+        <button onclick="startOver()" class="control-button">
+          restart
+        </button>
+        <button id="pauseButton" onclick="togglePause()" class="control-button">Pause</button>
+      </div>
+    </div>
+    <style>
+      .options {
+        display: flex;
+        flex-direction: column;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .row.buttons {
+        justify-content: center;
+      }
+      .label {
+        width:50%;
+        text-align: right;
+      }
+      .input {
+        width:50%;
+        flex-grow: 1;
+      }
+      canvas {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      body {
+        background-color: beige;
+        font-size: medium;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      .control-button {
+        font-size: larger;
+        background-color: darkslategray;
+        color: whitesmoke;
+      }
+    </style>
+  </body>
+    <script src="sketch.js"></script>
+  </body>
+</html>
