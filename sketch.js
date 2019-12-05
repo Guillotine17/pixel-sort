@@ -16,7 +16,7 @@ const sortMethodOptions = [
     'BRIGHTNESS', 'SATURATION', 'HUE', 'LIGHTNESS', 'RED', 'GREEN', 'BLUE'
 ];
 let sortDirection = 'ASC'; // DESC|ASC
-
+let canvas;
 let thresholdMethod = 'BRIGHTNESS';
 let thresholdGTLT = 'LESS';
 let thresholdValue = 150;
@@ -42,9 +42,17 @@ function renderInputField() {
 
 function setup() {
     renderInputField();
+    canvas = createCanvas(img.width, img.height);
+    canvas.parent('canvas-container');
     handleImageInput(img);
 }
-
+function saveImage() {
+    const date = new Date();
+    saveCanvas('sorter' +
+        date.getHours() +
+        date.getMinutes() +
+        date.getSeconds() + '.png', 'png');
+}
 function handleFile(file) {
     if (file.type === 'image') {
         clear();
@@ -95,7 +103,7 @@ function thresholdTest(color) {
 
 function draw() {
     if (img && !paused && rowIndex <= height) {
-        console.log(rowIndex);
+        // console.log(rowIndex);
         loadPixels();
         let rowColors = [];
         const colorsToSort = [];
@@ -230,13 +238,10 @@ function handleImageInput(loadResult) {
     pd = pixelDensity();
     loadPixels();
     rowIndex = 0;
-    
-
-    // resizeCanvas(drawWidth, drawHeight);
-
-    // image(img, 0, 0, drawWidth, drawHeight);
-    // img = createImg(file.data, '');
 }
+
+
+
 function startOver() {
     clear();
     frameCount = 0;

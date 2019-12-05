@@ -11,7 +11,7 @@
   
   <body>
     <h2>Pixel Sort</h2>
-    <div class="options" id="options" style="padding-top: 50px;">
+    <div class="options" id="options">
       <div class="row">
           <div class="label">
             Upload Image
@@ -104,17 +104,24 @@
       </div> -->
       <div class="row buttons">
         <button onclick="startOver()" class="control-button">
-          restart
+          Restart
         </button>
         <button id="pauseButton" onclick="togglePause()" class="control-button">Pause</button>
       </div>
     </div>
+    <div class="row">
+      <button onclick="saveImage()" class="control-button" style="margin-left: auto; margin-right: auto; margin-top: 20px;">
+        SAVE
+      </button>
+    </div>
+    <div id="canvas-container"></div>
     <style>
       .options {
         display: flex;
         flex-direction: column;
       }
       .row {
+        padding-top: 10px;
         display: flex;
         flex-direction: row;
         width: 100%;
