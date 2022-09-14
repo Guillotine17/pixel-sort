@@ -126,6 +126,7 @@ function draw() {
         rowColors.forEach((rowColor, rcIndex) => {
             set(rcIndex, rowIndex, rowColor);
         });
+        // updatePixels(0, rowIndex, width, 1 );
         updatePixels();
         rowIndex += 1;
     }
